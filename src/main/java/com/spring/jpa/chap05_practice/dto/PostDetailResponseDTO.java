@@ -19,12 +19,12 @@ public class PostDetailResponseDTO {
     private String author;
     private String title;
     private String content;
-    private List<String> hashTags;
+    private List<String> hashTags; //post는 List<HashTag> hashTags
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime regDate;
 
-    //Entity를 DTO로 변환하는 생성자
+    //Entity(Post)를 DTO로 변환하는 생성자
     public PostDetailResponseDTO(Post post) { //상세내용 응답 객체
         this.author = post.getWriter();
         this.title = post.getTitle();
@@ -38,7 +38,7 @@ public class PostDetailResponseDTO {
 //        }
 //        this.hashTags = list;
 
-        //위와 같음
+        //위와 같음(JavaScript 방식의 코딩)
         this.hashTags = post.getHashTags()//List<HashTag>
                 .stream()//stream 객체를 받아옴(collection 데이터를 함수선언 형식으로 처리할수 있게 해주는 객체)
                 .map(HashTag::getTagName) // Stream 내의 요소들에 대해 함수가 적용된 결과를 새로운 요소로 mapping

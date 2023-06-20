@@ -40,6 +40,14 @@ public class Post {
     private LocalDateTime updateTime;
 
     @OneToMany(mappedBy = "post")
+    @Builder.Default //특정 필드를 지정한 값으로 초기화 하는것을 강졔!
     private List<HashTag> hashTags = new ArrayList<>(); //조회용도
+
+    public void addHashTag(HashTag hashTag) {
+        hashTags.add(hashTag);
+        if(this != hashTag.getPost()){
+            hashTag.setPost(this);
+        }
+    }
 
 }
